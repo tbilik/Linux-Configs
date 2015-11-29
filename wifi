@@ -1,0 +1,10 @@
+#!/usr/bin/ruby
+
+wifiStatus = `sudo iwconfig wlo1`
+
+signal = /[1-7]?[0-9]\/70/.match(wifiStatus).to_s.sub("/70", "").to_i * 100 / 70
+
+essid = /".+"/.match(wifiStatus).to_s.gsub('"', '')
+
+puts "#{signal}% (#{essid})"
+
